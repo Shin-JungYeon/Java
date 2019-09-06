@@ -1,0 +1,118 @@
+package chap18;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+/*
+ * InputStream 데이터를 읽기 위한 기능
+ *   1. int read() : 1byte를 읽어서 리턴. -> 한글 깨짐.
+ *   2. int read(byte[] buf) : buf의 길이만큼 데이터를 읽어서 데이터는 buf에 저장. 읽은 바이트 수를 리턴.
+ *   3. int read(byte[] buf, int start, int len) : buf의 시작 인덱스(start)부터 len만큼 데이터를 읽어서 buf에 저장해서 실제로 읽은 바이트 수를 리턴.
+ */
+public class FileInputStreamEx1 {
+	public static void main(String[] args) throws IOException {
+		FileInputStream fis = new FileInputStream("src/chap18/InputStreamEx1.java");  //파일의 내용을 읽어서 가져옴. 한글은 다 깨져서 나옴. -> 화면에 출력할 때 1byte씩 해서	//상대경로
+//		int data = 0;
+//		while((data = fis.read())!=-1) {
+//			System.out.print((char)data);  //내용을 문자 하나씩 읽어오기 때문에 println으로 쓰면 문자 한글자 출력하고 한줄띄고 함.
+//		}
+		int len = 0;
+		byte[] buf = new byte[fis.available()];  //InputStream available() : 읽기 가능 바이트 수 리턴. 앞으로 읽을 수 있는(남아 있는) 바이트의 수.
+//		while((len=fis.read(buf)) != -1) {  //실제로 읽은 바이트 수 리턴.
+//			System.out.println(new String(buf, 0, len));  //모든 데이터 수를 buf가 가지고 있음.  //내용을 한꺼번에 읽어오기 때문에 println으로 써도 글자 밀리거나 하지 않음.
+//		}
+		while((len=fis.read(buf, 0, buf.length)) != -1) {  //바로 위의 while문과 같은 결과.
+			System.out.println(new String(buf, 0, len));
+		}
+	}
+}package chap18;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+/*
+ * IO 스트림 : 데이터의 이동 통로.
+ *          단방향, 입력과 출력이 명확하게 구분 됨.
+ *          지연 존재, 내부에 버퍼 존재. 내부적으로 모아놨다가 하나씩 처리. 액션이 일어나야 출력됨.
+ *          
+ * 		입력 	바이트  : 1byte 단위 read()			: InputStream
+ * 			문자	 : 2byte(1char) 단위 read()	: Reader
+ * 		출력	바이트  : 1byte 단위 write()			: OutputStream > PrintStream (OutputStream의 하위 객체)
+ * 			문자	 : 2byte(1char) write() 	: Writer
+ * 
+ * 	 InputStream을 Reader 객체로 변환 : InputStreamReader : Reader의 하위 클래스, InputStream를 매개변수로 받아서 Reader형태로 바꿔줌.
+ * 	 OutputStream을 Writer 객체로 변환 : OutputStreamWriter : Writer의 하위 클래스
+ * 
+ *   자바가 제공해주는 표준입출력 객체. 객체 생성 필요 없이 바로 사용 가능.
+ * 		표준입력 객체 : InputStream System.in
+ * 		표준출력 객체 : PrintStream System.out
+ * 		표준오류 객체 : PrintStream System.err
+ */
+public class InputStreamEx1 {
+	public static void main(String[] args) throws IOException {
+		InputStream in = System.in;  //System.in : 표준입력, InputStream 타입.
+		int data = 0;
+		while((data=in.read()) != -1) {  //ctrl + z : -1	in.read() : 1byte씩 읽어옴. -> 한글은 한글자에 2byte 라서 깨짐.
+			System.out.print((char)data);
+		}
+	}
+}
+package chap18;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.SequenceInputStream;
+
+/*
+ * SequenceInputStream 예제
+ *   여러 개의 InputStream을 모아서 하나의 InputStream으로 리턴.
+ *   연결 스트림.
+ */
+public class SequenceInputStreamEx1 {
+	public static void main(String[] args) throws IOException {
+		byte[] arr1 = {1, 2, 3, 4, 5};
+		byte[] arr2 = {6, 7, 8, 9, 10};
+		ByteArrayInputStream stream1 = new ByteArrayInputStream(arr1);  // ByteArray -> IputStream 객체로 변환. (인덱스와 길이 이용해서 부분적으로만 가져올 수도 있음.)
+		ByteArrayInputStream stream2 = new ByteArrayInputStream(arr2);  //ByteArrayReader는 없음. Reader는 문자형이기때문. StringReader 사용.
+		SequenceInputStream in = new SequenceInputStream(stream1, stream2);  //스트림 두 개를 붙여버린것.
+		System.out.println("stream1의 내용");
+		int data;
+//		while((data = stream1.read()) != -1) {
+//			System.out.println((byte)data);
+//		}
+//		System.out.println("stream2의 내용");
+//		while((data = stream2.read()) != -1) {
+//			System.out.println((byte)data);
+//		}
+		System.out.println("연결 스트림 in의 내용");
+		while((data = in.read()) != -1) {  //앞에서 먼저 다 읽어오면 여기선 읽을 것이 없음. 연결시켰다고 해서 새로운 객체가 생성되는 것이 아니라 물리적으로 붙여놓은 것 뿐.
+			System.out.println((byte)data);
+		}
+		
+	}
+}
+package chap18;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.SequenceInputStream;
+import java.util.Vector;
+
+public class SequenceInputStreamEx2 {
+	public static void main(String[] args) throws IOException {
+		FileInputStream f1 = new FileInputStream("src/chap18/InputStreamEx1.java");
+		FileInputStream f2 = new FileInputStream("src/chap18/ReaderEx1.java");
+		FileInputStream f3 = new FileInputStream("err.log");
+		int len = 0;
+		byte[] buf = new byte[1024];
+		Vector<InputStream> v = new Vector<InputStream>();
+		v.add(f1); v.add(f2); v.add(f3);
+		SequenceInputStream st = new SequenceInputStream(v.elements());  //elements() : Enumeration 타입 -> Iterator의 구버전. 반복자. Vector와 Hashtable에서 사용 가능.
+																		 //InputStream 에는 InputStream만!
+		while((len=st.read(buf)) != -1) {
+			System.out.print(new String(buf, 0, len));
+		}
+	}
+}
