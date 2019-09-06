@@ -1,0 +1,11 @@
+package programmers;
+
+class Solution {
+	String arrangement = "()(((()())(())()))(())";
+	int answer = 0;
+	String[] arr = arrangement.split("()");
+	private void syso() {
+		// TODO Auto-generated method stub
+
+	}
+}

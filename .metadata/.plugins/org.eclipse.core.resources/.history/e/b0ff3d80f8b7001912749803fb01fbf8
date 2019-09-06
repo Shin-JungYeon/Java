@@ -1,0 +1,28 @@
+package programmers;
+
+public class Exam2 {
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String arrangement = "()(((()())(())()))(())";
+		System.out.println(s.solution(arrangement));
+	}
+}
+
+class Solution {
+	public int solution(String arrangement) {
+		int answer = 0;
+		String[] arr = arrangement.split("()");
+		for (int i = 0; i < arr.length; i++) {
+			if (arr.length - 1 > i) {
+				if (arr[i].equals("(") && arr[i].equals(arr[i + 1])) { // ºË∏∑¥Î±‚ ∞πºˆ.
+					System.out.println("ºË∏∑¥Î±‚ Ω√¿€ : "+i);  // ºË∏∑¥Î±‚ Ω√¿€ ¿Œµ¶Ω∫
+				} else if (arr[i].equals(")") && arr[i].equals(arr[i + 1])) {
+					System.out.println("ºË∏∑¥Î±‚ ≥° : "+(i+1));  // ºË∏∑¥Î±‚ ≥° ¿Œµ¶Ω∫
+				} else if (arr[i].equals("(") && !arr[i].equals(arr[i + 1])) {
+					System.out.println("∑π¿Ã¿˙Ω√¿€ : "+i);
+				}
+			}
+		}
+		return answer;
+	}
+}

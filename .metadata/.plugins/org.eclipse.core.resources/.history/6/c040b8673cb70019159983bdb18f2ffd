@@ -1,0 +1,15 @@
+package programmers;
+
+public class Exam2 {
+
+	public static void main(String[] args) {
+		String arrangement = "()(((()())(())()))(())";
+		int answer = 0;
+		String[] arr = arrangement.split('(');
+		for(String a : arr) {
+			System.out.println(a);
+		}
+		System.out.println(arr.length);
+	}
+
+}

@@ -1,0 +1,13 @@
+package programmers;
+
+public class Exam2 {
+	public static void main(String[] args) {
+		int x = 2;
+		int n = 5;
+		long[] answer = new long[n];
+	      for(int i=x; i<n; i+=x) {
+	          answer[i] = (long) i;
+	      }
+		System.out.println(answer);
+	}
+}

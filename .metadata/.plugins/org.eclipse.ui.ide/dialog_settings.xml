@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\Java\eclipse-workspace\Dynamic Beat"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\Java\eclipse-workspace\practice"/>
+			<item value="D:\Java\eclipse-workspace\chap18"/>
+			<item value="D:\Java\eclipse-workspace\chap16"/>
+			<item value="D:\Java\eclipse-workspace\chap15"/>
+			<item value="D:\Java\eclipse-workspace\chap14"/>
+			<item value="D:\Java\eclipse-workspace\chap12"/>
+			<item value="D:\Java\eclipse-workspace\chap11"/>
+			<item value="D:\Java\eclipse-workspace\chap10"/>
+			<item value="D:\Java\eclipse-workspace\chap09"/>
+			<item value="D:\Java\eclipse-workspace\chap08"/>
+			<item value="D:\Java\eclipse-workspace\chap07"/>
+			<item value="D:\Java\eclipse-workspace\chap06"/>
+			<item value="D:\Java\eclipse-workspace\chap05"/>
+			<item value="D:\Java\eclipse-workspace\chap04"/>
+			<item value="D:\Java\eclipse-workspace\chap03"/>
+			<item value="D:\Java\eclipse-workspace\chap02"/>
+			<item value="D:\Java\eclipse-workspace\chap01"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="659" key="DIALOG_X_ORIGIN"/>
+		<item value="341" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

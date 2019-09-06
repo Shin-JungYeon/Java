@@ -1,0 +1,8 @@
+package programmers;
+
+class Solution {
+	String arrangement = "()(((()())(())()))(())";
+	int answer = 0;
+	String[] arr = arrangement.split("()");
+	System.out.println(arr);
+}

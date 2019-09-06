@@ -1,0 +1,15 @@
+package programmers;
+
+public class Exam2 {
+	public static void main(String[] args) {
+		Solution s = new Solution();
+		String arrangement = "()(((()())(())()))(())";
+		s.solution(arrangement);
+	}
+}
+class Solution {
+    public int solution(String arrangement) {
+        int answer = 0;
+        return answer;
+    }
+}
